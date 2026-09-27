@@ -171,10 +171,7 @@ This project demonstrates practical use of:
 * Deploy the application as a web service
 
 
-
+## Author
 **Bharat Gurjar**
 
 This project was built as a practical project to strengthen Python, Object-Oriented Programming, MySQL, and Git/GitHub skills.
-
-
-## Author
