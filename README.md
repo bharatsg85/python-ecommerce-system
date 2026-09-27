@@ -170,7 +170,7 @@ This project demonstrates practical use of:
 * Add payment gateway integration
 * Deploy the application as a web service
 
-## Author
+
 
 **Bharat Gurjar**
 
