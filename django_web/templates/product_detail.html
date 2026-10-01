@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} | ShopSphere{% endblock %}
+{% block content %}
+<section class="detail">
+    <div class="detail-image">{{ product.name|slice:":1"|upper }}</div>
+    <div class="detail-info">
+        <span class="category">{{ product.category }}</span>
+        <h1>{{ product.name }}</h1>
+        <div class="price large">₹{{ product.price }}</div>
+        <p class="stock">{{ product.stock }} available</p>
+        {% if product.stock > 0 %}
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'product_detail' product.id %}">
+            <button class="btn btn-primary" type="submit">Add to Cart</button>
+        </form>
+        {% else %}
+        <button class="btn btn-disabled" disabled>Out of Stock</button>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

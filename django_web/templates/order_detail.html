@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Order #{{ order.id }} | ShopSphere{% endblock %}
+{% block content %}
+<section class="page-header">
+    <p class="eyebrow">ORDER DETAILS</p>
+    <h1>Order #{{ order.id }}</h1>
+    <p>{{ order.order_date|date:"d M Y, H:i" }} · <span class="status {{ order.status|lower }}">{{ order.status }}</span></p>
+</section>
+<section class="section compact">
+<div class="order-detail-layout">
+    <div>
+        {% for item in items %}
+        <div class="cart-item">
+            <div class="mini-image">{{ item.name|slice:":1"|upper }}</div>
+            <div class="cart-main"><h3>{{ item.name }}</h3><p>{{ item.quantity }} × ₹{{ item.price }}</p></div>
+            <strong>₹{{ item.subtotal }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+    <aside class="summary">
+        <h2>Order Total</h2>
+        <div class="summary-row"><span>Total</span><strong>₹{{ order.total_amount }}</strong></div>
+        {% if order.status != "Cancelled" %}
+        <form method="post" action="{% url 'cancel_order' order.id %}" onsubmit="return confirmCancel()">
+            {% csrf_token %}
+            <button class="btn btn-danger full" type="submit">Cancel Order</button>
+        </form>
+        {% endif %}
+    </aside>
+</div>
+</section>
+{% endblock %}

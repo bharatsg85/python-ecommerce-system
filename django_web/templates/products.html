@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Products | ShopSphere{% endblock %}
+{% block content %}
+<section class="page-header">
+    <p class="eyebrow">STORE</p>
+    <h1>Products</h1>
+    <p>Find something you need.</p>
+</section>
+
+<section class="section compact">
+    <form class="search-bar" method="get">
+        <input name="q" value="{{ search }}" placeholder="Search by product or category...">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="card">
+            <div class="product-image">{{ product.name|slice:":1"|upper }}</div>
+            <div class="card-body">
+                <span class="category">{{ product.category }}</span>
+                <h3>{{ product.name }}</h3>
+                <div class="price">₹{{ product.price }}</div>
+                <p class="stock">{% if product.stock > 0 %}{{ product.stock }} in stock{% else %}Out of stock{% endif %}</p>
+                <div class="card-actions">
+                    <a class="btn btn-outline" href="{% url 'product_detail' product.id %}">Details</a>
+                    {% if product.stock > 0 %}
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{% url 'products' %}">
+                        <button class="btn btn-primary" type="submit">Add to cart</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty"><h3>No products found</h3><p>Try a different search.</p></div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

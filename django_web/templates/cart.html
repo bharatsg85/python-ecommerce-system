@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Cart | ShopSphere{% endblock %}
+{% block content %}
+<section class="page-header">
+    <p class="eyebrow">YOUR BAG</p>
+    <h1>Shopping Cart</h1>
+</section>
+<section class="section compact">
+{% if cart %}
+<div class="cart-layout">
+    <div class="cart-list">
+        {% for item in cart %}
+        <div class="cart-item">
+            <div class="mini-image">{{ item.name|slice:":1"|upper }}</div>
+            <div class="cart-main">
+                <h3>{{ item.name }}</h3>
+                <p>₹{{ item.price }} each</p>
+            </div>
+            <form method="post" action="{% url 'update_cart' item.product_id %}" class="qty">
+                {% csrf_token %}
+                <input type="number" name="quantity" value="{{ item.quantity }}" min="0" max="{{ item.stock }}">
+                <button class="btn btn-small" type="submit">Update</button>
+            </form>
+            <strong>₹{{ item.subtotal }}</strong>
+            <form method="post" action="{% url 'remove_from_cart' item.product_id %}">
+                {% csrf_token %}
+                <button class="remove" type="submit">Remove</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <aside class="summary">
+        <h2>Summary</h2>
+        <div class="summary-row"><span>Total</span><strong>₹{{ total }}</strong></div>
+        <form method="post" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <button class="btn btn-primary full" type="submit">Place Order</button>
+        </form>
+    </aside>
+</div>
+{% else %}
+<div class="empty"><h2>Your cart is empty.</h2><a class="btn btn-primary" href="{% url 'products' %}">Browse Products</a></div>
+{% endif %}
+</section>
+{% endblock %}

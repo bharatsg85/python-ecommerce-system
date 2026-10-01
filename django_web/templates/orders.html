@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Orders | ShopSphere{% endblock %}
+{% block content %}
+<section class="page-header">
+    <p class="eyebrow">ACCOUNT</p>
+    <h1>Your Orders</h1>
+</section>
+<section class="section compact">
+{% if orders %}
+<div class="table-wrap">
+<table>
+<thead><tr><th>Order</th><th>Date</th><th>Status</th><th>Total</th><th></th></tr></thead>
+<tbody>
+{% for order in orders %}
+<tr>
+<td>#{{ order.id }}</td>
+<td>{{ order.order_date|date:"d M Y, H:i" }}</td>
+<td><span class="status {{ order.status|lower }}">{{ order.status }}</span></td>
+<td>₹{{ order.total_amount }}</td>
+<td><a class="text-link" href="{% url 'order_detail' order.id %}">View →</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}
+<div class="empty"><h2>No orders yet.</h2><a class="btn btn-primary" href="{% url 'products' %}">Start Shopping</a></div>
+{% endif %}
+</section>
+{% endblock %}

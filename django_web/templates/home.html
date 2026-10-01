@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}ShopSphere | Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">PYTHON × DJANGO × MYSQL</p>
+        <h1>Everything you need.<br><span>One simple store.</span></h1>
+        <p class="hero-text">Browse products, manage your cart, and place orders through the web interface.</p>
+        <a class="btn btn-primary" href="{% url 'products' %}">Shop Products →</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">FEATURED</p>
+            <h2>Latest Products</h2>
+        </div>
+        <a href="{% url 'products' %}" class="text-link">View all →</a>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="card">
+            <div class="product-image">{{ product.name|slice:":1"|upper }}</div>
+            <div class="card-body">
+                <span class="category">{{ product.category }}</span>
+                <h3>{{ product.name }}</h3>
+                <div class="price">₹{{ product.price }}</div>
+                <p class="stock">{% if product.stock > 0 %}{{ product.stock }} in stock{% else %}Out of stock{% endif %}</p>
+                <a class="btn btn-outline full" href="{% url 'product_detail' product.id %}">View Product</a>
+            </div>
+        </article>
+        {% empty %}
+        <p>No products found.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

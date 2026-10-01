@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Login | ShopSphere{% endblock %}
+{% block content %}
+<section class="auth-card">
+    <p class="eyebrow">WELCOME BACK</p>
+    <h1>Login</h1>
+    <form method="post" class="form">
+        {% csrf_token %}
+        <label>Email<input type="email" name="email" required></label>
+        <label>Password<input type="password" name="password" required></label>
+        <button class="btn btn-primary full" type="submit">Login</button>
+    </form>
+    <p class="form-footer">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</section>
+{% endblock %}
