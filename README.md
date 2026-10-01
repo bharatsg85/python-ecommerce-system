@@ -1,113 +1,114 @@
 # Python E-Commerce System
 
-## Overview
-A console-based e-commerce application built with Python and MySQL.
+A full-stack e-commerce application built with **Python, MySQL, and Django**, featuring both a console-based application and a web-based GUI.
 
-The project allows users to register and log in, browse and search products, manage a shopping cart, place orders, view order history, and cancel orders.
+## 🖥️ Web Interface
 
-The application uses object-oriented programming and a MySQL database to manage users, products, carts, and orders.
+The project includes a Django-based web interface connected to the MySQL e-commerce database.
 
-## Features
+### Web Features
+
+* User registration and login
+* Secure password hashing
+* Product browsing and search
+* Product details
+* Shopping cart management
+* Quantity updates and item removal
+* Checkout and order placement
+* Order history
+* Order details
+* Order cancellation
+* Stock management
+* Responsive web interface
+
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Products
+
+![Products](screenshots/products.png)
+
+### Login
+
+![Login](screenshots/login.png)
+
+### Register
+
+![Register](screenshots/register.png)
+
+### Shopping Cart
+
+![Shopping Cart](screenshots/cart.png)
+
+### Orders
+
+![Orders](screenshots/order.png)
+
+## ✨ Console Application Features
+
+The original project also includes a Python console-based e-commerce application.
 
 * User registration and login
 * Product management
 * Product search
 * Shopping cart management
-* Add and remove products from cart
-* Automatic cart total calculation
 * Order placement
-* Order history
 * Order cancellation
-* Stock management
+* Order history
 * MySQL database integration
-* Object-oriented Python architecture
+* CRUD operations
 
+## 🛠️ Technologies Used
 
-
-## Technologies Used
-
-* **Python 3**
+* **Python**
+* **Django**
 * **MySQL**
-* **mysql-connector-python**
-* **Object-Oriented Programming (OOP)**
-* **Git & GitHub**
+* **HTML**
+* **CSS**
+* **JavaScript**
+* **Git**
+* **GitHub**
 
-
-## Project Structure
+## 🏗️ Project Structure
 
 ```text
 python-ecommerce-system/
 │
-├── main.py          # Main application and menu
-├── database.py      # MySQL database connection
-├── product.py       # Product management
-├── user.py          # User registration and login
-├── cart.py          # Shopping cart operations
-├── order.py         # Order management
-├── ecommerce.db     # Local database file
-├── requirements.txt # Python dependencies
-├── .gitignore       # Files excluded from Git
-└── README.md        # Project documentation
+├── console_app/
+│   ├── main.py
+│   ├── database.py
+│   ├── product.py
+│   ├── user.py
+│   ├── cart.py
+│   └── order.py
+│
+├── django_web/
+│   ├── manage.py
+│   ├── config/
+│   ├── shop/
+│   ├── templates/
+│   └── static/
+│
+├── screenshots/
+│   ├── home.png
+│   ├── products.png
+│   ├── login.png
+│   ├── register.png
+│   ├── cart.png
+│   └── order.png
+│
+├── README.md
+└── .gitignore
 ```
 
+## 🗄️ Database
 
-## Database
+The application uses **MySQL** as its primary database.
 
-The project uses **MySQL** as the database management system.
-
-The database stores and manages:
-
-* User accounts
-* Product information
-* Shopping cart data
-* Orders
-* Order items
-
-The main tables are:
-
-```text
-users
-products
-cart
-orders
-order_items
-```
-
-Foreign keys are used to maintain relationships between users, products, carts, and orders.
-
-
-## Installation & Setup
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/bharatsg85/python-ecommerce-system.git
-cd python-ecommerce-system
-```
-
-### 2. Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
-### 3. Activate the virtual environment
-
-**Windows:**
-
-```bash
-venv\Scripts\activate
-```
-
-### 4. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Configure MySQL
-
-Create a MySQL database named `ecommerce` and create the required tables:
+### Main Tables
 
 * `users`
 * `products`
@@ -115,63 +116,112 @@ Create a MySQL database named `ecommerce` and create the required tables:
 * `orders`
 * `order_items`
 
-Update the database connection settings in `database.py` with your MySQL credentials.
+The Django web interface connects to the existing MySQL e-commerce database.
 
-### 6. Run the application
+## ⚙️ Setup
+
+### 1. Clone the Repository
 
 ```bash
+git clone https://github.com/bharatsg85/python-ecommerce-system.git
+cd python-ecommerce-system
+```
+
+### 2. Console Application
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+Install the required packages:
+
+```bash
+pip install mysql-connector-python
+```
+
+Configure your MySQL database connection and run:
+
+```bash
+cd console_app
 python main.py
 ```
 
-## How to Run
+### 3. Django Web Application
 
-After completing the setup, start the application with:
+Move into the Django project:
 
 ```bash
-python main.py
+cd django_web
 ```
 
-The application will display a console menu where you can:
+Create and activate a virtual environment if needed:
 
-1. Register or log in
-2. Browse and search products
-3. Manage your shopping cart
-4. Place and cancel orders
-5. View order history
-6. Manage products
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-## Python Concepts Demonstrated
+Install the required packages:
 
-This project demonstrates practical use of:
+```bash
+pip install -r requirements.txt
+```
 
-* Object-Oriented Programming (OOP)
-* Classes and objects
-* Constructors
-* Class methods
-* Encapsulation
-* Modular programming
-* Exception handling
-* Functions and control flow
-* SQL queries from Python
-* Database connectivity
+Create a `.env` file using `.env.example` and configure your MySQL credentials.
+
+Run Django migrations:
+
+```bash
+python manage.py migrate
+```
+
+Start the development server:
+
+```bash
+python manage.py runserver
+```
+
+Open the local server in your browser:
+
+```text
+http://127.0.0.1:8000/
+```
+
+## 📚 Concepts Demonstrated
+
+* Python fundamentals
+* Object-Oriented Programming
+* Functions and modules
 * CRUD operations
+* SQL
+* MySQL database integration
+* Database relationships
+* Transactions
+* Authentication
+* Password hashing
+* Django MVT architecture
+* HTML/CSS/JavaScript
+* Git and GitHub
 
+## 🚀 Future Improvements
 
+* Payment gateway integration
+* Product reviews and ratings
+* Admin dashboard improvements
+* User profile management
+* Product categories and filtering
+* Deployment with a production database
+* REST API integration
 
-## Future Improvements
+## 👨‍💻 Author
 
-
-* Add a graphical or web-based user interface
-* Implement secure password hashing
-* Add automated tests
-* Improve input validation and error handling
-* Add product categories and filtering
-* Add an admin dashboard
-* Add payment gateway integration
-* Deploy the application as a web service
-
-
-## Author
 **Bharat Gurjar**
 
-This project was built as a practical project to strengthen Python, Object-Oriented Programming, MySQL, and Git/GitHub skills.
+* GitHub: [@bharatsg85](https://github.com/bharatsg85)
+* LinkedIn: [Bharat Gurjar](https://www.linkedin.com/in/bharat-gurjar-35a447403)
+* GeeksforGeeks: [@bharatgur3su2](https://www.geeksforgeeks.org/user/bharatgur3su2/)
+
+⭐ If you find this project useful, feel free to explore the repository.
